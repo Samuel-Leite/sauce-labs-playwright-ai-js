@@ -1,22 +1,29 @@
 // Arquivo TestSetup.js
 
-const { beforeAll, beforeEach, afterEach } = require('@playwright/test');
-const fs = require('fs/promises');
-const path = require('path');
-const logger = require('./logger');
+const { beforeAll, beforeEach, afterEach } = require("@playwright/test");
+const dataHelper = require("../helpers/dataHelper");
+const fs = require("fs/promises");
+const path = require("path");
+const logger = require("./logger");
 
 class Hooks {
   constructor() {
-    this.allureResultsDir = path.join(__dirname, '..', 'allure-results');
+    this.allureResultsDir = path.join(__dirname, "..", "allure-results");
   }
 
   async cleanAllureResults() {
     try {
       await fs.rm(this.allureResultsDir, { recursive: true, force: true });
-      logger.info('-----------------------------------------------------------------------');
-      logger.info('Diretório do allure-results foi apagado e restaurado com sucesso');
+      logger.info(
+        "-----------------------------------------------------------------------"
+      );
+      logger.info(
+        "Diretório do allure-results foi apagado e restaurado com sucesso"
+      );
     } catch (err) {
-      logger.error(`Erro ao apagar e restaurar o diretório allure-results: ${err.message}`);
+      logger.error(
+        `Erro ao apagar e restaurar o diretório allure-results: ${err.message}`
+      );
     }
   }
 
@@ -26,12 +33,18 @@ class Hooks {
     logger.clearLogFile();
   }
 
-  async beforeEachTest() {
-    logger.info('--------------------------------Start----------------------------------');
+  async beforeEachTest(page) {
+    logger.info(
+      "--------------------------------Start----------------------------------"
+    );
+    const baseUrl = dataHelper.readUrl(process.env.ENV);
+    await page.goto(baseUrl); // Agora utilizamos `page` diretamente aqui
   }
 
   async afterEachTest() {
-    logger.info('--------------------------------End----------------------------------');
+    logger.info(
+      "--------------------------------End----------------------------------"
+    );
   }
 }
 
@@ -41,8 +54,8 @@ beforeAll(async () => {
   await hooks.beforeAllTests();
 });
 
-beforeEach(async () => {
-  await hooks.beforeEachTest();
+beforeEach(async ({ page }) => {
+  await hooks.beforeEachTest(page);
 });
 
 afterEach(async () => {

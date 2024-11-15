@@ -12,7 +12,6 @@ class HomePage {
         ? await this.successLogin.isVisible()
         : await this.errorLogin.isVisible();
 
-      // Usando a condição ternária para logar a mensagem
       isVisible
         ? logger.info(
             isSuccessful

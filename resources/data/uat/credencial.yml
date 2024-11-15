@@ -1,0 +1,7 @@
+usuario_valido:
+  username: "standard_user"
+  password: "secret_sauce"
+
+usuario_bloqueado:
+  username: "locked_out_user"
+  password: "secret_sauce"
