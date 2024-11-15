@@ -1,7 +1,7 @@
 // Arquivo TestSetup.js
 
 const { beforeAll, beforeEach, afterEach } = require("@playwright/test");
-const dataHelper = require("../helpers/dataHelper");
+const data = require("../helpers/data");
 const fs = require("fs/promises");
 const path = require("path");
 const logger = require("./logger");
@@ -37,7 +37,7 @@ class Hooks {
     logger.info(
       "--------------------------------Start----------------------------------"
     );
-    const baseUrl = dataHelper.readUrl(process.env.ENV);
+    const baseUrl = data.readUrl(process.env.ENV);
     await page.goto(baseUrl); // Agora utilizamos `page` diretamente aqui
   }
 
