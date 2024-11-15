@@ -1,0 +1,22 @@
+{
+  "name": "sauce-labs-playwright",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "regression": "npx playwright test --workers=1 --headed",
+    "tag": "npx playwright test --workers=1 --headed -g",
+    "ui": "npx playwright test --ui",
+    "allure": "allure generate --clean ./allure-results && allure open",
+    "prepare": "husky install",
+    "precommit": "git add . ",
+    "commit": "git cz && node .husky/push.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@playwright/test": "^1.48.2",
+    "@types/node": "^22.9.0"
+  }
+}
