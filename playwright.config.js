@@ -24,7 +24,7 @@ module.exports = defineConfig({
   use: {
     browserName: browserConfig.getBrowser(browserName),
     ...browserConfig.getDeviceConfig(deviceName),
-    headless: false,
+    headless: true,
     trace: 'on-first-retry',
   },
 });
