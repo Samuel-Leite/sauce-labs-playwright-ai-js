@@ -1,4 +1,4 @@
-const logger = require('../../helpers/logger')
+const logger = require("../../helpers/logger");
 
 class LoginPage {
   constructor(page) {
@@ -11,7 +11,6 @@ class LoginPage {
 
   async doLogin(user, password) {
     try {
-      await this.page.goto("https://www.saucedemo.com/");
       await this.txtUsername.fill(user);
       await this.txtPassword.fill(password);
       await this.btnLogin.click();

@@ -1,18 +1,18 @@
-const { devices } = require('@playwright/test');
+const { devices } = require("@playwright/test");
 
 class BrowserConfig {
   constructor() {
     this.browsers = {
-      chromium: 'chromium',
-      firefox: 'firefox',
-      webkit: 'webkit',
-      edge: 'msedge',
+      chromium: "chromium",
+      firefox: "firefox",
+      webkit: "webkit",
+      edge: "msedge",
     };
 
     this.devicesConfig = {
-      'Desktop Chrome': devices['Desktop Chrome'],
-      'iPad': devices['iPad'],
-      'Pixel 5': devices['Pixel 5'],
+      "Desktop Chrome": devices["Desktop Chrome"],
+      iPad: devices["iPad"],
+      "Pixel 5": devices["Pixel 5"],
     };
   }
 
@@ -29,7 +29,9 @@ class BrowserConfig {
   }
 
   getDeviceConfig(deviceName) {
-    return this.devicesConfig[deviceName] || this.devicesConfig['Desktop Chrome'];
+    return (
+      this.devicesConfig[deviceName] || this.devicesConfig["Desktop Chrome"]
+    );
   }
 }
 
