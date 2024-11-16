@@ -47,6 +47,7 @@ stage('Generate Allure Report') {
                 docker {
                     image 'frankescobar/allure-docker-service:latest'
                     reuseNode true
+                    args '-v /tmp/allure-results:/allure-results'
                 }
             }
             steps {
