@@ -38,7 +38,6 @@ pipeline {
                 script {
                     sh '''
                         npx playwright test
-                        ls -la allure-results
                     '''
                 }
             }
@@ -48,16 +47,12 @@ stage('Generate Allure Report') {
                 docker {
                     image 'frankescobar/allure-docker-service:latest'
                     reuseNode true
-                    args '-v /var/jenkins_home/workspace/swag-labs/allure-results:/allure-results -v /var/jenkins_home/workspace/swag-labs/allure-report:/allure-report:z'
                 }
             }
             steps {
                 script {
                     sh '''
-                        mkdir -p /allure-report
-                        allure generate /allure-results --clean -o /allure-report
-                        chmod -R 777 /allure-report
-                        ls -la /allure-report
+                        allure generate allure-results --clean -o allure-report
                     '''
                 }
             }
@@ -65,9 +60,6 @@ stage('Generate Allure Report') {
 
         stage('Publish Allure Report') {
             steps {
-                script {
-                    sh 'docker inspect <container_id> | grep -i mount' 
-                }
                 allure includeProperties: false, jdk: '', reportBuildPolicy: 'ALWAYS', results: [[path: 'allure-report']]
             }
         }
