@@ -1,9 +1,9 @@
-# Automação de Testes End-to-End com CodeceptJS + Playwright
+# Automação de Testes End-to-End com Playwright
 
 
 ## 🚀 INTRODUÇÃO:
 
-O projeto de automação de testes end-to-end utilizando os frameworks CodeceptJS + Playwright, visa fornecer uma estrutura robusta para automatizar testes em aplicações web, com foco na eficiência e na integração contínua e entrega contínua (CI/CD) através da Pipeline do Jenkins. Utilizando as tecnologias mais recentes, como Docker e Docker Compose, juntamente com as melhores práticas de desenvolvimento, este projeto oferece uma solução completa para garantir a qualidade do software em cada etapa do ciclo de desenvolvimento. Como base para os testes, utilizamos a plataforma [Seu Barriga](https://seubarriga.wcaquino.me/login) como template, proporcionando um cenário realista para os casos de teste.
+O projeto de automação de testes end-to-end utilizando o framework Playwright, visa fornecer uma estrutura robusta para automatizar testes em aplicações web, com foco na eficiência e na integração contínua e entrega contínua (CI/CD) através da Pipeline do Jenkins e Github Actions. Utilizando as tecnologias mais recentes, como Docker e Docker Compose, juntamente com as melhores práticas de desenvolvimento, este projeto oferece uma solução completa para garantir a qualidade do software em cada etapa do ciclo de desenvolvimento. Como base para os testes, utilizamos a plataforma [Swag Labs](https://www.saucedemo.com/) como template, proporcionando um cenário realista para os casos de teste.
 Além disso, como parte do compromisso com a qualidade do código e a consistência no desenvolvimento, implementamos o ESLint e o Prettier, com o objetivo de manter um código limpo, legível e livre de erros, contribuindo para a qualidade geral do projeto.
 
 ## 💻 TECNOLOGIAS:
@@ -11,13 +11,11 @@ Além disso, como parte do compromisso com a qualidade do código e a consistên
 - VS Code
 - Node.js
 - Java 11
-- CodeceptJS
 - Playwright
 - JavaScript
-- Jenkins
+- CI/CD: Jenkins e Github Actions
 - Docker
 - Docker Compose
-- CI/CD
 
 ## 🤖 CONFIGURAÇÕES:
 
@@ -31,6 +29,9 @@ Além disso, como parte do compromisso com a qualidade do código e a consistên
 - Informar os dados necessários no arquivo dotEnv:
 
 ```
+# Selecionar o dispositivo que precisa executar os testes
+DEVICE=Pixel 5
+
 # Navegador a ser utilizado durante os testes
 BROWSER='chromium'
 
@@ -88,11 +89,10 @@ docker run --rm -v "${PWD}/output:/usr/src/app/output" {nome_imagem_docker}
 
 ### Configuração:
 - Instalar o Docker Compose Desktop,
-- Baixar o arquivo do Docker Compose localizado em `./resources/conf`,
-- Inicializar a imagem do Docker Compose acessando o terminal no diretório do que foi feito download e executando o seguinte comando:
+- Inicializar a imagem do Docker Compose acessando o terminal no diretório executando o seguinte comando:
 ```
 <!-- Construir a imagem do Docker Compose -->
-docker build -t {nome_docker_compose} .
+docker build -t my-jenkins .
 
 <!-- Inicializar o Jenkins através do Docker Compose -->
 docker compose up -d
@@ -101,6 +101,17 @@ docker compose up -d
 ```
 docker compose down
 ```
+
+- Para logar no Jenkins através do Docker Compose, é necessário acessar o seguinte endereço:
+```
+http://localhost:8080/
+```
+
+- Para encontrar a senha gerada pelo Docker para informar na configuração do Jenkins, por favor acessar: Docker Desktop > Volumes > selecionar a imagem do Docker que construiu >
+clicar em 'In Use' > pesquisar pelo nome da imagem que construiu do Docker Compose > nos logs vai estar informando a senha
+
+- Prosseguir com a configuração necessária do Jenkins para estar elegível o uso
+
 
 ## CONCLUSÃO:
 
