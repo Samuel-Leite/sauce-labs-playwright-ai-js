@@ -1,11 +1,13 @@
 pipeline {
     agent any
 
-    environment {
-        PLAYWRIGHT_BROWSERS_PATH = '/ms-playwright'  // Ajuste conforme necessário
-    }
-
     stages {
+        stage('Verify Docker Access') {
+            steps {
+                sh 'docker --version'
+                sh 'docker ps'
+            }
+        }
         stage('Install dependencies') {
             agent {
                 docker {
@@ -15,7 +17,6 @@ pipeline {
             }
             steps {
                 script {
-                    // Exibe versões do Node.js e NPM
                     sh '''
                         node --version
                         npm --version
@@ -29,43 +30,17 @@ pipeline {
         stage('Run Playwright Tests') {
             agent {
                 docker {
-                    image 'mcr.microsoft.com/playwright:v1.35.0-focal'
+                    image 'mcr.microsoft.com/playwright:v1.48.1'
                     reuseNode true
                 }
             }
             steps {
                 script {
-                    // Executa os testes Playwright com Allure Reporter
                     sh '''
-                        npx playwright test --reporter=line,allure
+                        npx playwright test
                     '''
                 }
             }
-        }
-    }
-
-    post {
-        always {
-            script {
-                // Gera o relatório Allure após os testes
-                allure([
-                    includeProperties: false,
-                    jdk: '', // Deixe em branco para usar a versão padrão do JDK
-                    results: 'allure-results'  // Diretório onde os resultados dos testes são salvos
-                ])
-            }
-
-            // Publica o relatório HTML se necessário
-            publishHTML([
-                allowMissing: false, 
-                alwaysLinkToLastBuild: false, 
-                keepAll: false, 
-                reportDir: 'output', 
-                reportFiles: 'index.html', 
-                reportName: 'Playwright Test Report', 
-                reportTitles: '', 
-                useWrapperFileDirectly: true
-            ])
         }
     }
 }
