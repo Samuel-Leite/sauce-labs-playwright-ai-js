@@ -45,7 +45,7 @@ pipeline {
 stage('Generate Allure Report') {
             agent {
                 docker {
-                    image 'allure-framework/allure-commandline:2.16.1'
+                    image 'frankescobar/allure-docker-service:latest'
                     reuseNode true
                 }
             }
