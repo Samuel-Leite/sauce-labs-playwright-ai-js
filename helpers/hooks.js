@@ -1,7 +1,7 @@
 // Arquivo TestSetup.js
 
 const { beforeAll, beforeEach, afterEach } = require("@playwright/test");
-const dataHelper = require("../helpers/dataHelper");
+const data = require("../helpers/data");
 const fs = require("fs/promises");
 const path = require("path");
 const logger = require("./logger");
@@ -12,22 +12,46 @@ class Hooks {
   }
 
   async cleanAllureResults() {
-    try {
-      await fs.rm(this.allureResultsDir, { recursive: true, force: true });
-      logger.info(
-        "-----------------------------------------------------------------------"
-      );
-      logger.info(
-        "Diretório do allure-results foi apagado e restaurado com sucesso"
-      );
-    } catch (err) {
-      logger.error(
-        `Erro ao apagar e restaurar o diretório allure-results: ${err.message}`
-      );
+    const isDocker = process.env.DOCKER === "true";
+
+    if (isDocker) {
+      try {
+        const containerDir = "/usr/src/app/allure-results";
+        const files = await fs.readdir(containerDir);
+        files.forEach(async (file) => {
+          const filePath = path.join(containerDir, file);
+          await fs.rm(filePath, { recursive: true, force: true });
+        });
+        logger.info(
+          "-----------------------------------------------------------------------"
+        );
+        logger.info(
+          "Diretório do allure-results foi apagado e restaurado com sucesso no Docker"
+        );
+      } catch (err) {
+        logger.error(
+          `Erro ao apagar e restaurar o diretório allure-results no Docker: ${err.message}`
+        );
+      }
+    }
+
+    if (!isDocker) {
+      try {
+        await fs.rm(this.allureResultsDir, { recursive: true, force: true });
+        logger.info(
+          "-----------------------------------------------------------------------"
+        );
+        logger.info(
+          "Diretório do allure-results foi apagado e restaurado com sucesso localmente"
+        );
+      } catch (err) {
+        logger.error(
+          `Erro ao apagar e restaurar o diretório allure-results localmente: ${err.message}`
+        );
+      }
     }
   }
 
-  // Função chamada antes de todos os testes
   async beforeAllTests() {
     await this.cleanAllureResults();
     logger.clearLogFile();
@@ -37,8 +61,8 @@ class Hooks {
     logger.info(
       "--------------------------------Start----------------------------------"
     );
-    const baseUrl = dataHelper.readUrl(process.env.ENV);
-    await page.goto(baseUrl); // Agora utilizamos `page` diretamente aqui
+    const baseUrl = data.readUrl(process.env.ENV);
+    await page.goto(baseUrl);
   }
 
   async afterEachTest() {
