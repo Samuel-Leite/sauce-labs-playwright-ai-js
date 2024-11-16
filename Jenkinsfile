@@ -56,6 +56,7 @@ stage('Generate Allure Report') {
                     sh '''
                         mkdir -p /allure-report
                         allure generate /allure-results --clean -o /allure-report
+                        chmod -R 777 /allure-report
                         ls -la /allure-report
                     '''
                 }
@@ -65,14 +66,7 @@ stage('Generate Allure Report') {
         stage('Publish Allure Report') {
             steps {
                 script {
-                    // Verificar se o diretório de relatório foi gerado corretamente
-                    sh '''
-                        ls -la /allure-report  # Verificar a existência do diretório de relatório
-                    '''
-                    // Corrigir o comando mv para mover para o local correto
-                    sh '''
-                        mv /allure-report/* /var/jenkins_home/workspace/swag-labs/allure-report/
-                    '''
+                    sh 'docker inspect <container_id> | grep -i mount'  # Verificar volumes montados
                 }
                 allure includeProperties: false, jdk: '', reportBuildPolicy: 'ALWAYS', results: [[path: 'allure-report']]
             }
