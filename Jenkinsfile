@@ -54,7 +54,9 @@ stage('Generate Allure Report') {
             steps {
                 script {
                     sh '''
+                        mkdir -p /allure-report
                         allure generate /allure-results --clean -o /allure-report
+                        ls -la /allure-report
                     '''
                 }
             }
