@@ -37,33 +37,10 @@ pipeline {
             steps {
                 script {
                     sh '''
-                        npx playwright test --reporter=line,allure
+                        npx playwright test
                     '''
                 }
             }
-        }
-    }
-
-    post {
-        always {
-            script {
-                allure([
-                    includeProperties: false,
-                    jdk: '',
-                    results: 'allure-results'
-                ])
-            }
-
-            publishHTML([
-                allowMissing: false, 
-                alwaysLinkToLastBuild: false, 
-                keepAll: false, 
-                reportDir: 'output', 
-                reportFiles: 'index.html', 
-                reportName: 'Playwright Test Report', 
-                reportTitles: '', 
-                useWrapperFileDirectly: true
-            ])
         }
     }
 }
