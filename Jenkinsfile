@@ -42,5 +42,26 @@ pipeline {
                 }
             }
         }
+stage('Generate Allure Report') {
+            agent {
+                docker {
+                    image 'allure-framework/allure-commandline:2.16.1'
+                    reuseNode true
+                }
+            }
+            steps {
+                script {
+                    sh '''
+                        allure generate allure-results --clean -o allure-report
+                    '''
+                }
+            }
+        }
+
+        stage('Publish Allure Report') {
+            steps {
+                allure includeProperties: false, jdk: '', reportBuildPolicy: 'ALWAYS', results: [[path: 'allure-report']]
+            }
+        }
     }
 }
