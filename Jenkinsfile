@@ -21,6 +21,7 @@ pipeline {
                         node --version
                         npm --version
                         npm install
+                        npm install @playwright/test allure-playwright
                         npx playwright install
                     '''
                 }
