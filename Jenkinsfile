@@ -54,7 +54,7 @@ stage('Generate Allure Report') {
             steps {
                 script {
                     sh '''
-                        allure generate allure-results --clean -o allure-report
+                        allure generate /allure-results --clean -o /allure-report
                     '''
                 }
             }
@@ -62,6 +62,11 @@ stage('Generate Allure Report') {
 
         stage('Publish Allure Report') {
             steps {
+                script {
+                    sh '''
+                        mv /allure-report /var/jenkins_home/workspace/swag-labs/allure-report
+                    '''
+                }
                 allure includeProperties: false, jdk: '', reportBuildPolicy: 'ALWAYS', results: [[path: 'allure-report']]
             }
         }
