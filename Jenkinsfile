@@ -48,7 +48,7 @@ stage('Generate Allure Report') {
                 docker {
                     image 'frankescobar/allure-docker-service:latest'
                     reuseNode true
-                    args '-v /var/jenkins_home/workspace/swag-labs/allure-results:/allure-results'
+                    args '-v /var/jenkins_home/workspace/swag-labs/allure-results:/allure-results -v /var/jenkins_home/workspace/swag-labs/allure-report:/allure-report:z'
                 }
             }
             steps {
