@@ -63,8 +63,13 @@ stage('Generate Allure Report') {
         stage('Publish Allure Report') {
             steps {
                 script {
+                    // Verificar se o diretório de relatório foi gerado corretamente
                     sh '''
-                        mv /allure-report /var/jenkins_home/workspace/swag-labs/allure-report
+                        ls -la /allure-report  # Verificar a existência do diretório de relatório
+                    '''
+                    // Corrigir o comando mv para mover para o local correto
+                    sh '''
+                        mv /allure-report/* /var/jenkins_home/workspace/swag-labs/allure-report/
                     '''
                 }
                 allure includeProperties: false, jdk: '', reportBuildPolicy: 'ALWAYS', results: [[path: 'allure-report']]
