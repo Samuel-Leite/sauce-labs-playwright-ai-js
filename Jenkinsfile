@@ -21,7 +21,6 @@ pipeline {
                         node --version
                         npm --version
                         npm install
-                        npm install @playwright/test allure-playwright
                         npx playwright install
                     '''
                 }
@@ -39,6 +38,7 @@ pipeline {
                 script {
                     sh '''
                         npx playwright test
+                        ls -la allure-results
                     '''
                 }
             }
@@ -48,7 +48,6 @@ stage('Generate Allure Report') {
                 docker {
                     image 'frankescobar/allure-docker-service:latest'
                     reuseNode true
-                    args '-v /tmp/allure-results:/allure-results'
                 }
             }
             steps {
