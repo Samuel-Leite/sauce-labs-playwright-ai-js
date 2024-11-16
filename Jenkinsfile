@@ -30,7 +30,7 @@ pipeline {
         stage('Run Playwright Tests') {
             agent {
                 docker {
-                    image 'mcr.microsoft.com/playwright:v1.48.2-arm64'
+                    image 'mcr.microsoft.com/playwright:v1.48.1'
                     reuseNode true
                 }
             }
