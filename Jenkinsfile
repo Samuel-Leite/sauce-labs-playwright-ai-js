@@ -66,7 +66,7 @@ stage('Generate Allure Report') {
         stage('Publish Allure Report') {
             steps {
                 script {
-                    sh 'docker inspect <container_id> | grep -i mount'  # Verificar volumes montados
+                    sh 'docker inspect <container_id> | grep -i mount' 
                 }
                 allure includeProperties: false, jdk: '', reportBuildPolicy: 'ALWAYS', results: [[path: 'allure-report']]
             }
