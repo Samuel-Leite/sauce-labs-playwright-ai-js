@@ -102,16 +102,16 @@ docker compose up -d
 docker compose down
 ```
 
-- Para logar no Jenkins através do Docker Compose, é necessário acessar o seguinte endereço:
-```
-http://localhost:8080/
-```
-
 - Para encontrar a senha gerada pelo Docker para informar na configuração do Jenkins, por favor acessar: Docker Desktop > Volumes > selecionar a imagem do Docker que construiu >
 clicar em 'In Use' > pesquisar pelo nome da imagem que construiu do Docker Compose > nos logs vai estar informando a senha
 
+- Acessar o Jenkins: Abra o Jenkins acessando: `http://localhost:8080/` e finalize o processo de instalação.
+
 - Prosseguir com a configuração necessária do Jenkins para estar elegível o uso
 
+- Instalar os plugins: Para executar a Pipeline no Jenkins em um contâiner do Docker, é necessário instalar o plugin 'Docker Pipeline, Docker, Pipeline: Stage View, HTML Publisher, Blue Ocean, Allure'
+
+- Acesse o [link](https://www.youtube.com/watch?v=8BDoiobnKZU) para configuração do report Allure
 
 ## CONCLUSÃO:
 

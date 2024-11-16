@@ -42,5 +42,26 @@ pipeline {
                 }
             }
         }
+stage('Generate Allure Report') {
+            agent {
+                docker {
+                    image 'frankescobar/allure-docker-service:latest'
+                    reuseNode true
+                }
+            }
+            steps {
+                script {
+                    sh '''
+                        allure generate allure-results --clean -o allure-report
+                    '''
+                }
+            }
+        }
+
+        stage('Publish Allure Report') {
+            steps {
+                allure includeProperties: false, jdk: '', reportBuildPolicy: 'ALWAYS', results: [[path: 'allure-report']]
+            }
+        }
     }
 }
