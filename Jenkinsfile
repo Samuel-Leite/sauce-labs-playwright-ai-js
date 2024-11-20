@@ -42,25 +42,15 @@ pipeline {
                 }
             }
         }
-stage('Generate Allure Report') {
-            agent {
-                docker {
-                    image 'frankescobar/allure-docker-service:latest'
-                    reuseNode true
-                }
-            }
+        stage('Generate Allure Report') {
             steps {
-                script {
-                    sh '''
-                        allure generate allure-results --clean -o allure-report
-                    '''
-                }
+                git 'https://github.com/eroshenkoam/allure-example.git'
+                sh './gradlew clean test'
             }
-        }
-
-        stage('Publish Allure Report') {
-            steps {
-                allure includeProperties: false, jdk: '', reportBuildPolicy: 'ALWAYS', results: [[path: 'allure-report']]
+            post {
+                always {
+                    allure includeProperties: false, jdk: '', results: [[path: 'allure-results']]
+                }
             }
         }
     }
