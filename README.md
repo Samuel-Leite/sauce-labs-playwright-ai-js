@@ -16,6 +16,9 @@ Além disso, como parte do compromisso com a qualidade do código e a consistên
 - CI/CD: Jenkins e Github Actions
 - Docker
 - Docker Compose
+- Percy
+- Husky
+- Logger Winston
 
 ## 🤖 CONFIGURAÇÕES:
 
@@ -41,6 +44,9 @@ DOCKER=false
 # Selecionar o ambiente que vai executar os testes: 'uat' ou 'prod'
 ENV=uat
 ```
+
+## ✅ COMANDOS PARA EXECUTAR OS TESTES:
+
 - Executar todos os testes:
 
 ```
@@ -53,15 +59,32 @@ npm run regression
 npm run tag '@nome_tag'
 ```
 
+- Executar teste regressivo contemplando visual testing (percy):
+
+```
+npm run percy
+```
+
 ## 📂 ESTRUTURA DO PROJETO:
 
-| Diretório       | Finalidade                                                                             |
-| --------------- | -------------------------------------------------------------------------------------- |
-| ./husky         | Configuração da automação dos commits                                                  |
-| ./helpers       | Configuração com Custom Commands e Hooks com funções utilizadas na automação           |
-| ./resource/conf | Documentos pertinentes a configurações realizadas durante o projeto                    |
-| ./resource/data | Credenciais para logar na aplicação                                                    |
-| ./tests         | Testes E2E, e pages concernentes aos testes automatizados                              |
+| Diretório              | Finalidade                                                                             |
+| ---------------------- | -------------------------------------------------------------------------------------- |
+| ./github               | Configuração para executar pipeline do Github Actions                                  |
+| ./husky                | Configuração dos commits                                                               |
+| ./docker               | Arquivo em zip com as configurações do Docker Compose com Jenkins                      |
+| ./helpers/browsers     | configuração personalizada para os navegadores e dispositivos                          |
+| ./helpers/dataYaml     | Configurações para ler arquivos YAML                                                   |
+| ./helpers/hooks        | Configurações que executam antes e depois de cada teste (@Before, @After)              |
+| ./helpers/logger       | Gerenciamento do log Winston para registrar mensagens no console e em arquivo          |
+| ./resource/conf        | Gerenciar as URLs de acordo com os ambientes: prod e uat                               |
+| ./resource/data        | Credenciais para logar na aplicação de acordo com os ambientes: prod e uat             |
+| ./tests/e2e            | Contém os cenários de testes para serem executados                                     |
+| ./tests/pages          | Contém pages de acordo com cada página da aplicação Web/UI                             |
+| env                    | Variáveis de ambiente                                                                  |
+| changelog.config       | Arquivo com os padrões para o commit                                                   |
+| docker-compose.yml     | Configuração para rodar dois contêineres Docker: Jenkins e  Docker-in-Docker           |
+| Dockerfile             | Cria uma imagem de contêiner que configura um ambiente para rodar testes automatizados |
+| Jenkinsfile            | Script para executar pipeline e gerar o relatório Allure                               |
 
 
 ## DOCKER
@@ -113,11 +136,23 @@ clicar em 'In Use' > pesquisar pelo nome da imagem que construiu do Docker Compo
 
 - Acesse o [link](https://www.youtube.com/watch?v=8BDoiobnKZU) para configuração do report Allure
 
+## VISUAL TESTING - PERCY
+O Percy integrado ao Playwright é uma ferramenta de testes visuais que captura snapshot das páginas durante os testes e compara com versões anteriores para detectar mudanças inesperadas na aparência da aplicação. Para configurar é necessário acessar o [link](https://www.browserstack.com/docs/percy/integrate/playwright) e após a configuração irá visualizar os snapshot através do [link](https://percy.io/).
+
+É necessário configurar o Token do Percy na raiz do projeto através do terminal pelo comando: `$Env:PERCY_TOKEN="web_{codigo_token}"` - o token do percy é gerado após configuração do [link](https://www.browserstack.com/docs/percy/integrate/playwright).
+
+- Comando para executar o visual testing (percy):
+```
+npx percy exec -- <command to run the test script file>
+```
+
 ## CONCLUSÃO:
 
 Ao longo deste projeto, alcançamos diversos objetivos essenciais, desde a construção de testes automatizados até a implementação de uma pipeline de CI/CD eficiente. Utilizando as tecnologias mais recentes e modernas, conseguimos criar uma estrutura sólida e escalável para garantir a qualidade do software.
 
 ## 🔗 Links para Apoio:
+- [Playwright](https://playwright.dev/)
+- [Configuração do Percy](https://www.browserstack.com/docs/percy/integrate/playwright)
 - [Docker Desktop](https://www.docker.com/products/docker-desktop/)
 - [Hub Docker](https://hub.docker.com/)
 - [Jenkins - Configuring Content Security Policy](https://www.jenkins.io/doc/book/security/configuring-content-security-policy/)
