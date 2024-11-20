@@ -12,8 +12,7 @@ class LoginPage {
 
   async doLogin(user, password) {
     try {
-      const snapshotName = `Captura da pagina de login - ${Date.now()}`;
-      await percySnapshot(this.page, snapshotName);
+      await percySnapshot(this.page, "Captura da pagina de login");
 
       await this.txtUsername.fill(user);
       await this.txtPassword.fill(password);
