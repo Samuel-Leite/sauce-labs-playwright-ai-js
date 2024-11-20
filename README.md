@@ -5,6 +5,12 @@
 
 Este projeto de automação de testes end-to-end utiliza o Playwright para garantir a qualidade das aplicações web, com integração contínua (CI/CD) via Jenkins e Github Actions. Tecnologias como Docker, Docker Compose e Percy são empregadas para melhorar a eficiência dos testes e detectar mudanças visuais inesperadas, assegurando a qualidade geral do desenvolvimento.
 
+## 🌟 DESTAQUES DO PROJETO:
+- **Testes Automatizados com Playwright:** Garantia de testes rápidos, robustos e escaláveis em ambientes de navegação real.
+- **Integração com Percy:** Detecta mudanças visuais inesperadas e garante a consistência da interface.
+- **Docker & Docker Compose:** Criação de ambientes consistentes e isolados para execução de testes, sem necessidade de configuração manual.
+- **CI/CD com Jenkins e Github Actions:** Pipeline automatizada que valida cada alteração de código, assegurando entregas contínuas e rápidas.
+
 ## 💻 TECNOLOGIAS:
 
 - VS Code
