@@ -52,10 +52,10 @@ class Hooks {
     }
   }
 
-  // async beforeAllTests() {
-  //   await this.cleanAllureResults();
-  //   logger.clearLogFile();
-  // }
+  async beforeAllTests() {
+    await this.cleanAllureResults();
+    logger.clearLogFile();
+  }
 
   async beforeEachTest(page) {
     logger.info(
@@ -74,9 +74,9 @@ class Hooks {
 
 const hooks = new Hooks();
 
-// beforeAll(async () => {
-//   await hooks.beforeAllTests();
-// });
+beforeAll(async () => {
+  await hooks.beforeAllTests();
+});
 
 beforeEach(async ({ page }) => {
   await hooks.beforeEachTest(page);
