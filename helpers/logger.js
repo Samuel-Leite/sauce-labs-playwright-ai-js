@@ -22,11 +22,11 @@ class Logger {
     try {
       fs.writeFileSync("winston.log", "", "utf8");
       this.logger.info(
-        "Arquivo de log Winston foi apagado e restaurado com sucesso"
+        "WINSTON: arquivo do log foi apagado e restaurado com sucesso"
       );
     } catch (error) {
       this.logger.error(
-        `Falha ao apagar e restaurar o arquivo de log Winston: ${error.message}`
+        `WINSTON: falha ao apagar e restaurar o arquivo do log: ${error.message}`
       );
     }
   }
