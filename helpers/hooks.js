@@ -52,10 +52,10 @@ class Hooks {
     }
   }
 
-  async beforeAllTests() {
-    await this.cleanAllureResults();
-    logger.clearLogFile();
-  }
+  // async beforeAllTests() {
+  //   await this.cleanAllureResults();
+  //   logger.clearLogFile();
+  // }
 
   async beforeEachTest(page) {
     logger.info(
