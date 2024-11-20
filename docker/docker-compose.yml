@@ -6,25 +6,29 @@ services:
     container_name: jenkins-docker
     privileged: true
     environment:
-      - DOCKER_TLS_CERTDIR=
+      - DOCKER_TLS_CERTDIR=/certs
     volumes:
+      - jenkins-docker-certs:/certs/client
       - jenkins-data:/var/jenkins_home
-      - /var/run/docker.sock:/var/run/docker.sock # Permitir que o Docker no host seja acessado
     ports:
       - "2376:2376"
     networks:
-      - jenkins
+      jenkins:
+        aliases:
+          - docker
+    command: --storage-driver overlay2
 
   my-jenkins:
-    image: jenkins/jenkins:lts
+    image: my-jenkins
     container_name: my-jenkins
     restart: on-failure
-    user: root
     environment:
-      - DOCKER_HOST=unix:///var/run/docker.sock # Conecta-se diretamente ao socket Docker
+      - DOCKER_HOST=tcp://docker:2376
+      - DOCKER_CERT_PATH=/certs/client
+      - DOCKER_TLS_VERIFY=1
     volumes:
       - jenkins-data:/var/jenkins_home
-      - /var/run/docker.sock:/var/run/docker.sock # Permitir comunicação com Docker
+      - jenkins-docker-certs:/certs/client:ro
     ports:
       - "8080:8080"
       - "50000:50000"
@@ -36,4 +40,5 @@ networks:
     driver: bridge
 
 volumes:
+  jenkins-docker-certs:
   jenkins-data:
