@@ -60,7 +60,7 @@ stage('Generate Allure Report') {
 
         stage('Publish Allure Report') {
             steps {
-                allure includeProperties: false, jdk: '', reportBuildPolicy: 'ALWAYS', results: [[path: 'allure-report']]
+                allure includeProperties: false, jdk: '', results: [[path: 'allure-results']]
             }
         }
     }
