@@ -3,8 +3,7 @@
 
 ## 🚀 INTRODUÇÃO:
 
-O projeto de automação de testes end-to-end utilizando o framework Playwright, visa fornecer uma estrutura robusta para automatizar testes em aplicações web, com foco na eficiência e na integração contínua e entrega contínua (CI/CD) através da Pipeline do Jenkins e Github Actions. Utilizando as tecnologias mais recentes, como Docker e Docker Compose, juntamente com as melhores práticas de desenvolvimento, este projeto oferece uma solução completa para garantir a qualidade do software em cada etapa do ciclo de desenvolvimento. Como base para os testes, utilizamos a plataforma [Swag Labs](https://www.saucedemo.com/) como template, proporcionando um cenário realista para os casos de teste.
-Além disso, como parte do compromisso com a qualidade do código e a consistência no desenvolvimento, implementamos o ESLint e o Prettier, com o objetivo de manter um código limpo, legível e livre de erros, contribuindo para a qualidade geral do projeto.
+Este projeto de automação de testes end-to-end utiliza o Playwright para garantir a qualidade das aplicações web, com integração contínua (CI/CD) via Jenkins e Github Actions. Tecnologias como Docker, Docker Compose e Percy são empregadas para melhorar a eficiência dos testes e detectar mudanças visuais inesperadas, assegurando a qualidade geral do desenvolvimento.
 
 ## 💻 TECNOLOGIAS:
 
@@ -148,7 +147,7 @@ npx percy exec -- <command to run the test script file>
 
 ## CONCLUSÃO:
 
-Ao longo deste projeto, alcançamos diversos objetivos essenciais, desde a construção de testes automatizados até a implementação de uma pipeline de CI/CD eficiente. Utilizando as tecnologias mais recentes e modernas, conseguimos criar uma estrutura sólida e escalável para garantir a qualidade do software.
+Neste projeto, alcançamos importantes objetivos, como a criação de testes automatizados e a implementação de uma pipeline de CI/CD eficiente. Ao utilizar tecnologias modernas como Playwright, Docker, Docker Compose e Percy, conseguimos construir uma estrutura sólida e escalável para garantir a qualidade contínua do software.
 
 ## 🔗 Links para Apoio:
 - [Playwright](https://playwright.dev/)
