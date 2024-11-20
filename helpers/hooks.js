@@ -24,11 +24,11 @@ class Hooks {
           "-----------------------------------------------------------------------"
         );
         logger.info(
-          "Diretório do allure-results foi apagado e restaurado com sucesso no Docker"
+          "DIRETORIO: allure-results foi apagado e restaurado com sucesso no Docker"
         );
       } catch (err) {
         logger.error(
-          `Erro ao apagar e restaurar o diretório allure-results no Docker: ${err.message}`
+          `DIRETORIO: erro ao apagar e restaurar o diretório allure-results no Docker: ${err.message}`
         );
       }
     }
@@ -40,24 +40,30 @@ class Hooks {
           "-----------------------------------------------------------------------"
         );
         logger.info(
-          "Diretório do allure-results foi apagado e restaurado com sucesso localmente"
+          "DIRETORIO: allure-results foi apagado e restaurado com sucesso localmente"
         );
       } catch (err) {
         logger.error(
-          `Erro ao apagar e restaurar o diretório allure-results localmente: ${err.message}`
+          `DIRETORIO: erro ao apagar e restaurar o diretório allure-results localmente: ${err.message}`
         );
       }
     }
   }
 
   async beforeAllTests() {
+    logger.info(
+      "----------------------Variaveis de ambiente---------------------------"
+    );
+    logger.info(`ENV: ${process.env.ENV}`);
+    logger.info(`DEVICE: ${process.env.DEVICE}`);
+    logger.info(`BROWSER: ${process.env.BROWSER}`);
     await this.cleanAllureResults();
     logger.clearLogFile();
   }
 
   async beforeEachTest(page) {
     logger.info(
-      "--------------------------------Start----------------------------------"
+      "--------------------------------Start---------------------------------"
     );
     const baseUrl = dataYaml.readUrl(process.env.ENV);
     await page.goto(baseUrl);
