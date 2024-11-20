@@ -37,18 +37,14 @@ pipeline {
             steps {
                 script {
                     sh '''
-                        npx playwright test
+                        npx playwright test --reporter=allure-playwright
                     '''
+                    sh 'ls -l allure-results'
                 }
             }
         }
-stage('Generate Allure Report') {
-            agent {
-                docker {
-                    image 'frankescobar/allure-docker-service:latest'
-                    reuseNode true
-                }
-            }
+
+        stage('Generate Allure Report') {
             steps {
                 script {
                     sh '''
@@ -60,7 +56,7 @@ stage('Generate Allure Report') {
 
         stage('Publish Allure Report') {
             steps {
-                allure includeProperties: false, jdk: '', reportBuildPolicy: 'ALWAYS', results: [[path: 'allure-report']]
+                allure includeProperties: false, jdk: '', reportBuildPolicy: 'ALWAYS', results: [[path: 'allure-results']]
             }
         }
     }
