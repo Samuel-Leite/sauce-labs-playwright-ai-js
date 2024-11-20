@@ -74,9 +74,9 @@ class Hooks {
 
 const hooks = new Hooks();
 
-beforeAll(async () => {
-  await hooks.beforeAllTests();
-});
+// beforeAll(async () => {
+//   await hooks.beforeAllTests();
+// });
 
 beforeEach(async ({ page }) => {
   await hooks.beforeEachTest(page);
