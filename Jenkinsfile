@@ -12,13 +12,12 @@ pipeline {
             agent {
                 docker {
                     image 'node:22.2-alpine3.20'
-                    args '--user root'
+                    reuseNode true
                 }
             }
             steps {
                 script {
                     sh '''
-                        apk add --no-cache wget tar
                         node --version
                         npm --version
                         npm install
@@ -32,25 +31,36 @@ pipeline {
             agent {
                 docker {
                     image 'mcr.microsoft.com/playwright:v1.48.1'
+                    reuseNode true
                 }
             }
             steps {
-                sh 'npx playwright test --reporter=allure-playwright'
+                script {
+                    sh '''
+                        npx playwright test
+                    '''
+                }
             }
         }
-
-        stage('Generate Allure Report') {
+stage('Generate Allure Report') {
+            agent {
+                docker {
+                    image 'frankescobar/allure-docker-service:latest'
+                    reuseNode true
+                }
+            }
             steps {
-                sh '''
-                    wget -qO- https://github.com/allure-framework/allure2/releases/download/2.22.5/allure-2.22.5.tgz | tar -xz -C /tmp
-                    /tmp/allure-2.22.5/bin/allure generate allure-results --clean -o allure-report
-                '''
+                script {
+                    sh '''
+                        allure generate allure-results --clean -o allure-report
+                    '''
+                }
             }
         }
 
         stage('Publish Allure Report') {
             steps {
-                allure includeProperties: false, jdk: '', reportBuildPolicy: 'ALWAYS', results: [[path: 'allure-results']]
+                allure includeProperties: false, jdk: '', reportBuildPolicy: 'ALWAYS', results: [[path: 'allure-report']]
             }
         }
     }
