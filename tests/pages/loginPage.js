@@ -1,3 +1,4 @@
+const { percySnapshot } = require("@percy/playwright");
 const logger = require("../../helpers/logger");
 
 class LoginPage {
@@ -11,6 +12,9 @@ class LoginPage {
 
   async doLogin(user, password) {
     try {
+      const snapshotName = `Captura da pagina de login - ${Date.now()}`;
+      await percySnapshot(this.page, snapshotName);
+
       await this.txtUsername.fill(user);
       await this.txtPassword.fill(password);
       await this.btnLogin.click();
