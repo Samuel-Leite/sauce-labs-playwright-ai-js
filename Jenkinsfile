@@ -18,6 +18,7 @@ pipeline {
             steps {
                 script {
                     sh '''
+                        apk add --no-cache wget tar
                         node --version
                         npm --version
                         npm install
@@ -47,8 +48,8 @@ pipeline {
         stage('Generate Allure Report') {
             steps {
                 sh '''
+                    apk add --no-cache wget tar
                     wget -qO- https://github.com/allure-framework/allure2/releases/download/2.22.5/allure-2.22.5.tgz | tar -xz -C /tmp
-                    export PATH=$PATH:/tmp/allure-2.22.5/bin
                     /tmp/allure-2.22.5/bin/allure generate allure-results --clean -o allure-report
                 '''
             }
