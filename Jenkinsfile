@@ -52,7 +52,7 @@ stage('Generate Allure Report') {
             steps {
                 script {
                     sh '''
-                        allure generate allure-results --clean -o allure-results
+                        allure generate allure-results --clean -o allure-report
                     '''
                 }
             }
@@ -60,7 +60,7 @@ stage('Generate Allure Report') {
 
         stage('Publish Allure Report') {
             steps {
-                allure includeProperties: false, jdk: '', reportBuildPolicy: 'ALWAYS', results: [[path: 'allure-results']]
+                allure includeProperties: false, jdk: '', reportBuildPolicy: 'ALWAYS', results: [[path: 'allure-report']]
             }
         }
     }
