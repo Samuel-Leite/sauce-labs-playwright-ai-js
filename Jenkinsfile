@@ -12,7 +12,7 @@ pipeline {
             agent {
                 docker {
                     image 'node:22.2-alpine3.20'
-                    reuseNode true
+                    args '--user root'
                 }
             }
             steps {
@@ -32,23 +32,16 @@ pipeline {
             agent {
                 docker {
                     image 'mcr.microsoft.com/playwright:v1.48.1'
-                    reuseNode true
                 }
             }
             steps {
-                script {
-                    sh '''
-                        npx playwright test --reporter=allure-playwright
-                    '''
-                    sh 'ls -l allure-results'
-                }
+                sh 'npx playwright test --reporter=allure-playwright'
             }
         }
 
         stage('Generate Allure Report') {
             steps {
                 sh '''
-                    apk add --no-cache wget tar
                     wget -qO- https://github.com/allure-framework/allure2/releases/download/2.22.5/allure-2.22.5.tgz | tar -xz -C /tmp
                     /tmp/allure-2.22.5/bin/allure generate allure-results --clean -o allure-report
                 '''
