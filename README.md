@@ -116,8 +116,8 @@ docker run --rm -v "${PWD}/output:/usr/src/app/output" {nome_imagem_docker}
 ## TESTES CONTINUOS ATRAVÉS DO DOCKER COMPOSE - JENKINS
 
 ### Configuração:
-- Instalar o Docker Compose Desktop,
-- Inicializar a imagem do Docker Compose acessando o terminal no diretório executando o seguinte comando:
+- Instalar o Docker Compose Desktop
+- Inicializar a imagem do Docker Compose acessando o terminal na pasta `.\docker` executando o seguinte comando:
 ```
 <!-- Construir a imagem do Docker Compose -->
 docker build -t my-jenkins .
@@ -130,16 +130,25 @@ docker compose up -d
 docker compose down
 ```
 
-- Para encontrar a senha gerada pelo Docker para informar na configuração do Jenkins, por favor acessar: Docker Desktop > Volumes > selecionar a imagem do Docker que construiu >
-clicar em 'In Use' > pesquisar pelo nome da imagem que construiu do Docker Compose > nos logs vai estar informando a senha
+- Para encontrar a senha gerada pelo Docker Compose para informar na configuração do Jenkins, por favor acessar: Docker Desktop > Volumes > selecionar a imagem do Docker que construiu > clicar em 'In Use' > pesquisar pelo nome da imagem que construiu do Docker Compose > nos logs vai estar informando a senha
 
-- Acessar o Jenkins: Abra o Jenkins acessando: `http://localhost:8080/` e finalize o processo de instalação.
+- Acessar o Jenkins: Abra o Jenkins acessando: `http://localhost:8080/` e finalize o processo de instalação
 
 - Prosseguir com a configuração necessária do Jenkins para estar elegível o uso
 
-- Instalar os plugins: Para executar a Pipeline no Jenkins em um contâiner do Docker, é necessário instalar o plugin 'Docker Pipeline, Docker, Pipeline: Stage View, HTML Publisher, Blue Ocean, Allure'
+- Instalar os plugins: Para executar a Pipeline no Jenkins em um contâiner do Docker, é necessário instalar o plugin 'Docker Pipeline, Docker, Pipeline: Stage View, Blue Ocean, Allure'
 
-- Acesse o [link](https://www.youtube.com/watch?v=8BDoiobnKZU) para configuração do report Allure
+- Configurar as credenciais integrado ao Github, deve acessar: Gerenciar Jenkins > Credencials > clicar em System > clicar em Global credentials (unrestricted) > clicar em Add Credentials > após preencher as seguintes informações abaixo > clicar em Create
+    - Kind: Username with password
+    - Scope: Global (Jenkins, nodes, items, all child items, etc)
+    - Username: nome do usuário no repositório 
+    - Password: senha do Github
+
+- Configurar o Allure Report, deve acessar: Gerenciar Jenkins > Tools > Allure Commandline instalações > Allure Commandline > preencher as seguintes informações abaixo:
+    - Nome: informar o nome para identificar
+    - Versão (From Maven Central): selecionar a versão mais recente
+
+- Criar e executar a pipeline do Jenkins referenciando ao Github juntamente com o arquivo Jenkinsfile
 
 ## VISUAL TESTING - PERCY
 O Percy integrado ao Playwright é uma ferramenta de testes visuais que captura snapshot das páginas durante os testes e compara com versões anteriores para detectar mudanças inesperadas na aparência da aplicação. Para configurar é necessário acessar o [link](https://www.browserstack.com/docs/percy/integrate/playwright) e após a configuração irá visualizar os snapshot através do [link](https://percy.io/).
