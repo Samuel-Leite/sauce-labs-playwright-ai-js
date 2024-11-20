@@ -157,7 +157,9 @@ Neste projeto, alcançamos importantes objetivos, como a criação de testes aut
 
 ## 🔗 Links para Apoio:
 - [Playwright](https://playwright.dev/)
+- [Website Percy](https://percy.io/)
 - [Configuração do Percy](https://www.browserstack.com/docs/percy/integrate/playwright)
 - [Docker Desktop](https://www.docker.com/products/docker-desktop/)
 - [Hub Docker](https://hub.docker.com/)
 - [Jenkins - Configuring Content Security Policy](https://www.jenkins.io/doc/book/security/configuring-content-security-policy/)
+- [Winston Logger](https://amirmustafaofficial.medium.com/winston-production-level-logger-in-javascript-b77548044764)
