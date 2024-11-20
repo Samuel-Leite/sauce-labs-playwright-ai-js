@@ -3,7 +3,7 @@ const path = require("path");
 const yaml = require("js-yaml");
 const logger = require("./logger");
 
-class Data {
+class DataYaml {
   readUrl(environment) {
     const filePath = path.resolve(
       __dirname,
@@ -47,4 +47,4 @@ class Data {
   }
 }
 
-module.exports = new Data();
+module.exports = new DataYaml();
