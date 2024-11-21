@@ -1,11 +1,11 @@
 # Automação de Testes End-to-End com Playwright
 
 
-## 🚀 INTRODUÇÃO:
+## 📚 INTRODUÇÃO:
 
 Este projeto de automação de testes end-to-end utiliza o Playwright para garantir a qualidade das aplicações web, com integração contínua (CI/CD) via Jenkins e Github Actions. Tecnologias como Docker, Docker Compose e Percy são empregadas para melhorar a eficiência dos testes e detectar mudanças visuais inesperadas, assegurando a qualidade geral do desenvolvimento.
 
-## 🌟 DESTAQUES DO PROJETO:
+## 🚨 DESTAQUES DO PROJETO:
 - **Testes Automatizados com Playwright:** Garantia de testes rápidos, robustos e escaláveis em ambientes de navegação real.
 - **Integração com Percy:** Detecta mudanças visuais inesperadas e garante a consistência da interface.
 - **Docker & Docker Compose:** Criação de ambientes consistentes e isolados para execução de testes, sem necessidade de configuração manual.
@@ -50,7 +50,7 @@ DOCKER=false
 ENV=uat
 ```
 
-## ✅ COMANDOS PARA EXECUTAR OS TESTES:
+## 🚀 COMANDOS PARA EXECUTAR OS TESTES:
 
 - Executar todos os testes:
 
@@ -92,7 +92,7 @@ npm run percy
 | Jenkinsfile            | Script para executar pipeline e gerar o relatório Allure                               |
 
 
-## DOCKER
+## 🏗️ DOCKER
 Para executar os testes através do Docker, utilizar os seguintes comandos no terminal do VS Code
 
 - Inicializar o Docker Desktop
@@ -113,7 +113,7 @@ docker rmi {nome_imagem_docker}
 docker run --rm -v "${PWD}/output:/usr/src/app/output" {nome_imagem_docker}
 ```
 
-## TESTES CONTINUOS ATRAVÉS DO DOCKER COMPOSE - JENKINS
+## 💻 TESTES CONTINUOS ATRAVÉS DO DOCKER COMPOSE - JENKINS
 
 ### Configuração:
 - Instalar o Docker Compose Desktop
@@ -150,7 +150,7 @@ docker compose down
 
 - Criar e executar a pipeline do Jenkins referenciando ao Github juntamente com o arquivo Jenkinsfile
 
-## VISUAL TESTING - PERCY
+## 📸 VISUAL TESTING - PERCY
 O Percy integrado ao Playwright é uma ferramenta de testes visuais que captura snapshot das páginas durante os testes e compara com versões anteriores para detectar mudanças inesperadas na aparência da aplicação. Para configurar é necessário acessar o [link](https://www.browserstack.com/docs/percy/integrate/playwright) e após a configuração irá visualizar os snapshot através do [link](https://percy.io/).
 
 É necessário configurar o Token do Percy na raiz do projeto através do terminal pelo comando: `$Env:PERCY_TOKEN="web_{codigo_token}"` - o token do percy é gerado após configuração do [link](https://www.browserstack.com/docs/percy/integrate/playwright).
@@ -160,7 +160,7 @@ O Percy integrado ao Playwright é uma ferramenta de testes visuais que captura 
 npx percy exec -- <command to run the test script file>
 ```
 
-## CONCLUSÃO:
+## 🏁 CONCLUSÃO:
 
 Neste projeto, alcançamos importantes objetivos, como a criação de testes automatizados e a implementação de uma pipeline de CI/CD eficiente. Ao utilizar tecnologias modernas como Playwright, Docker, Docker Compose e Percy, conseguimos construir uma estrutura sólida e escalável para garantir a qualidade contínua do software.
 
