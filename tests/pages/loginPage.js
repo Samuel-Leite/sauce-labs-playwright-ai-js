@@ -22,7 +22,6 @@ class LoginPage {
         "Erro ao preencher as credenciais do usuario:",
         error.message
       );
-      throw new Error(`Erro ao efetuar o login: ${error.message}`);
     }
   }
 }
