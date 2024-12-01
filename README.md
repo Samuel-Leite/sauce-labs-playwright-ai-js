@@ -24,8 +24,9 @@ Este projeto de automação de testes end-to-end utiliza o Playwright para garan
 - Percy
 - Husky
 - Logger Winston
+- AI Capabilities (NLP) - ZeroStep
 
-## 🤖 CONFIGURAÇÕES:
+## ⚙️ CONFIGURAÇÕES:
 
 - Clonar o projeto na máquina local
 - Executar no terminal do diretório do projeto o comando:
@@ -48,6 +49,12 @@ DOCKER=false
 
 # Selecionar o ambiente que vai executar os testes: 'uat' ou 'prod'
 ENV=uat
+```
+
+## 🤖 INTEGRAÇÃO DE RECURSOS IA (NLP)
+O projeto está utilizando recursos IA integrado diretamente ao Playwright, GPT3.5 e GPT4, para interagir com os campos ao invés dos selectors CSS ou XPath locators. O projeto depende do token zerostep para funcionar que pode ser encontrado em sua conta no [site](https://app.zerostep.com), e em seguida é necessário acessar o terminal do projeto e informar o respectivo comando:
+```
+$Env:ZEROSTEP_TOKEN = "<your token here>"
 ```
 
 ## 🚀 COMANDOS PARA EXECUTAR OS TESTES:
@@ -172,3 +179,6 @@ Neste projeto, alcançamos importantes objetivos, como a criação de testes aut
 - [Hub Docker](https://hub.docker.com/)
 - [Jenkins - Configuring Content Security Policy](https://www.jenkins.io/doc/book/security/configuring-content-security-policy/)
 - [Winston Logger](https://amirmustafaofficial.medium.com/winston-production-level-logger-in-javascript-b77548044764)
+- [Explicação sobre o funcionamento do Zerostep AI](https://www.youtube.com/watch?v=yUlfgPPQjXk)
+- [Github Zerostep AI](https://github.com/zerostep-ai/zerostep)
+- [Zerostep](https://app.zerostep.com)

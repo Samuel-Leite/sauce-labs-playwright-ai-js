@@ -1,28 +1,28 @@
 const { percySnapshot } = require("@percy/playwright");
+const { test } = require("@playwright/test");
+const { ai } = require("@zerostep/playwright");
 const logger = require("../../helpers/logger");
 
 class LoginPage {
   constructor(page) {
     this.page = page;
-    this.txtUsername = page.getByPlaceholder("Username");
-    this.txtPassword = page.getByPlaceholder("Password");
-    this.btnLogin = page.getByRole("button", { name: "Login" });
-    this.errorMessage = page.locator('[data-test="error"]');
   }
 
   async doLogin(user, password) {
+    const aiArgs = { page: this.page, test };
+
     try {
       await percySnapshot(this.page, "Captura da pagina de login");
-
-      await this.txtUsername.fill(user);
-      await this.txtPassword.fill(password);
-      await this.btnLogin.click();
+      await ai(`Preencha ${user} no campo username`, aiArgs);
+      await ai(`Preencha ${password} no campo password`, aiArgs);
+      await ai("Clique no botão Login", aiArgs);
       logger.info("As credenciais do usuario foram submetidas com sucesso");
     } catch (error) {
       logger.error(
         "Erro ao preencher as credenciais do usuario:",
         error.message
       );
+      throw new Error(`Erro ao efetuar o login: ${error.message}`);
     }
   }
 }
