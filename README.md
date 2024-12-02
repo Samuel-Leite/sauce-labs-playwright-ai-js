@@ -3,10 +3,11 @@
 
 ## 📚 INTRODUÇÃO:
 
-Este projeto de automação de testes end-to-end utiliza o Playwright para garantir a qualidade das aplicações web, com integração contínua (CI/CD) via Jenkins e Github Actions. Tecnologias como Docker, Docker Compose e Percy são empregadas para melhorar a eficiência dos testes e detectar mudanças visuais inesperadas, assegurando a qualidade geral do desenvolvimento.
+Este projeto de automação de testes end-to-end utiliza o Playwright para garantir a qualidade das aplicações web, com suporte da inteligência artificial (AI - NLP) para otimizar ações durante os testes. A integração contínua (CI/CD) é implementada via Jenkins e Github Actions. Tecnologias como Docker, Docker Compose e Percy são empregadas para melhorar a eficiência dos testes e detectar mudanças visuais inesperadas, assegurando a qualidade geral do desenvolvimento.
 
 ## 🚨 DESTAQUES DO PROJETO:
 - **Testes Automatizados com Playwright:** Garantia de testes rápidos, robustos e escaláveis em ambientes de navegação real.
+- **Integração com recursos AI - NLP:** Utilização de inteligência artificial para ações autônomas nos testes, por exemplo: interagir e preencher campos.
 - **Integração com Percy:** Detecta mudanças visuais inesperadas e garante a consistência da interface.
 - **Docker & Docker Compose:** Criação de ambientes consistentes e isolados para execução de testes, sem necessidade de configuração manual.
 - **CI/CD com Jenkins e Github Actions:** Pipeline automatizada que valida cada alteração de código, assegurando entregas contínuas e rápidas.
@@ -173,7 +174,7 @@ npx percy exec -- <command to run the test script file>
 
 ## 🏁 CONCLUSÃO:
 
-Neste projeto, alcançamos importantes objetivos, como a criação de testes automatizados e a implementação de uma pipeline de CI/CD eficiente. Ao utilizar tecnologias modernas como Playwright, Docker, Docker Compose e Percy, conseguimos construir uma estrutura sólida e escalável para garantir a qualidade contínua do software.
+Neste projeto, alcançamos importantes objetivos, como a criação de testes automatizados robustos e a implementação de uma pipeline de CI/CD eficiente. Ao utilizar tecnologias modernas como Playwright, inteligência artificial (AI - NLP). Docker, Docker Compose e Percy, construímos uma estrutura confiável, escalável e capaz de garantir a qualidade contínua do software em um ambiente de desenvolvimento ágil e dinâmico.
 
 ## 🔗 Links para Apoio:
 - [Playwright](https://playwright.dev/)
