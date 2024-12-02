@@ -52,10 +52,14 @@ ENV=uat
 ```
 
 ## 🤖 INTEGRAÇÃO DE RECURSOS IA (NLP)
-O projeto está utilizando recursos IA integrado diretamente ao Playwright, GPT3.5 e GPT4, para interagir com os campos ao invés dos selectors CSS ou XPath locators. O projeto depende do token zerostep para funcionar que pode ser encontrado em sua conta no [site](https://app.zerostep.com), e em seguida é necessário acessar o terminal do projeto e informar o respectivo comando:
+O projeto está utilizando recursos IA integrado diretamente ao Playwright, GPT3.5 e GPT4, para interagir com os campos ao invés dos selectors CSS ou XPath locators. O projeto depende do token zerostep para funcionar que pode ser encontrado em sua conta no [site](https://app.zerostep.com), e em seguida é necessário informar o token do StepZero no dotEnv ou através do terminal executar o respectivo comando:
 ```
 $Env:ZEROSTEP_TOKEN = "<your token here>"
 ```
+
+Vale ressaltar que é necessário configurar o `ZEROSTEP_TOKEN` no:
+- Github Actions: Settings > Actions secrets and variables > Actions > New repository secret > preencher o nome da variável e o conteúdo do token. 
+- Jenkins através do Docker Compose: Gerenciar Jenkins > Credencials > Add Credencials > Selecionar em Kind a opção 'Secret text' > preencher o campo 'Secret' com o conteúdo do token > preencher o campo ID com o nome da variável.
 
 ## 🚀 COMANDOS PARA EXECUTAR OS TESTES:
 
