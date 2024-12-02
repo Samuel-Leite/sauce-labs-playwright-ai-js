@@ -50,6 +50,9 @@ DOCKER=false
 
 # Selecionar o ambiente que vai executar os testes: 'uat' ou 'prod'
 ENV=uat
+
+# Informar o token do ZeroStep para executar o projeto da automação localmente
+ZEROSTEP_TOKEN=
 ```
 
 ## 🤖 INTEGRAÇÃO DE RECURSOS IA (NLP)
@@ -88,7 +91,7 @@ npm run percy
 | ---------------------- | -------------------------------------------------------------------------------------- |
 | ./github               | Configuração para executar pipeline do Github Actions                                  |
 | ./husky                | Configuração dos commits                                                               |
-| ./docker               | Arquivo em zip com as configurações do Docker Compose com Jenkins                      |
+| ./docker               | Arquivos das configurações do Docker Compose com Jenkins                               |
 | ./helpers/browsers     | configuração personalizada para os navegadores e dispositivos                          |
 | ./helpers/dataYaml     | Configurações para ler arquivos YAML                                                   |
 | ./helpers/hooks        | Configurações que executam antes e depois de cada teste (@Before, @After)              |
@@ -99,7 +102,6 @@ npm run percy
 | ./tests/pages          | Contém pages de acordo com cada página da aplicação Web/UI                             |
 | env                    | Variáveis de ambiente                                                                  |
 | changelog.config       | Arquivo com os padrões para o commit                                                   |
-| docker-compose.yml     | Configuração para rodar dois contêineres Docker: Jenkins e  Docker-in-Docker           |
 | Dockerfile             | Cria uma imagem de contêiner que configura um ambiente para rodar testes automatizados |
 | Jenkinsfile            | Script para executar pipeline e gerar o relatório Allure                               |
 
