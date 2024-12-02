@@ -1,5 +1,6 @@
-# Automação de Testes End-to-End com Playwright
+# Automação E2E com Playwright + AI (NLP)
 
+![alt text](pwyAI.png)
 
 ## 📚 INTRODUÇÃO:
 
@@ -189,3 +190,4 @@ Neste projeto, alcançamos importantes objetivos, como a criação de testes aut
 - [Explicação sobre o funcionamento do Zerostep AI](https://www.youtube.com/watch?v=yUlfgPPQjXk)
 - [Github Zerostep AI](https://github.com/zerostep-ai/zerostep)
 - [Zerostep](https://app.zerostep.com)
+- [O que é AI NLP?](https://www.ibm.com/topics/natural-language-processing)
