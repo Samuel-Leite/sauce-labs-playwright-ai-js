@@ -16,10 +16,11 @@ pipeline {
                 }
             }
             steps {
-                script {
+                withCredentials([string(credentialsId: 'ZEROSTEP_TOKEN', variable: 'ZEROSTEP_TOKEN')]) {
                     sh '''
                         node --version
                         npm --version
+                        export ZEROSTEP_TOKEN=$ZEROSTEP_TOKEN
                         npm install
                         npx playwright install
                     '''
@@ -35,8 +36,9 @@ pipeline {
                 }
             }
             steps {
-                script {
+                withCredentials([string(credentialsId: 'ZEROSTEP_TOKEN', variable: 'ZEROSTEP_TOKEN')]) {
                     sh '''
+                        export ZEROSTEP_TOKEN=$ZEROSTEP_TOKEN
                         npx playwright test
                     '''
                 }
