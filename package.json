@@ -10,7 +10,13 @@
     "allure": "allure generate --clean ./allure-results && allure open",
     "prepare": "husky install",
     "precommit": "git add . ",
-    "commit": "git cz && node .husky/push.js"
+    "commit": "git cz && node .husky/push.js",
+    "lint": "eslint . --max-warnings=0"
+  },
+  "lint-staged": {
+    "*": [
+      "npx lint --fix"
+    ]
   },
   "keywords": [],
   "author": "",
@@ -21,14 +27,19 @@
     "@playwright/test": "^1.48.2",
     "@types/node": "^22.9.0",
     "@zerostep/playwright": "^0.1.5",
+    "eslint": "^9.16.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
     "git-cz": "^4.9.0",
-    "husky": "^9.1.6"
+    "husky": "^9.1.6",
+    "lint-staged": "^15.2.10"
   },
   "dependencies": {
     "@percy/playwright": "^1.0.7",
     "allure-playwright": "^3.0.6",
     "dotenv": "^16.4.5",
     "js-yaml": "^4.1.0",
+    "prettier": "^3.4.1",
     "winston": "^3.17.0"
   }
 }
