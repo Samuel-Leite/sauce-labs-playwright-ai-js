@@ -25,6 +25,7 @@ Este projeto de automação de testes end-to-end utiliza o Playwright para garan
 - Docker Compose
 - Percy
 - Husky
+- Eslint e Prettier
 - Logger Winston
 - AI Capabilities (NLP) - ZeroStep
 
@@ -178,6 +179,8 @@ npx percy exec -- <command to run the test script file>
 ## 🏁 CONCLUSÃO:
 
 Neste projeto, alcançamos importantes objetivos, como a criação de testes automatizados robustos e a implementação de uma pipeline de CI/CD eficiente. Ao utilizar tecnologias modernas como Playwright, inteligência artificial (AI - NLP). Docker, Docker Compose e Percy, construímos uma estrutura confiável, escalável e capaz de garantir a qualidade contínua do software em um ambiente de desenvolvimento ágil e dinâmico.
+
+Além disso, como parte do compromisso com a qualidade do código e a consistência no desenvolvimento, implementamos o ESLint e o Prettier, com o objetivo de manter um código limpo, legível e livre de erros, contribuindo para a qualidade geral do projeto.
 
 ## 🔗 Links para Apoio:
 - [Playwright](https://playwright.dev/)
